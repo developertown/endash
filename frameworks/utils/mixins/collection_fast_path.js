@@ -654,8 +654,8 @@ Endash.CollectionFastPath = {
       
       // add new and map
       var newView = this.addItemView(exampleView, object, index);
-    } else {
-      this._updateItemView(current, object, index);
+    //} else {
+    //  this._updateItemView(current, object, index);
     }
   },
   

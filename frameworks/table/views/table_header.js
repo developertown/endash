@@ -64,7 +64,7 @@ SC.TableHeaderView = SC.TableRowView.extend({
       column = columns.objectAt(col),
       E = this.headerViewForColumn(col),
       layout = SC.clone(E.prototype.layout || {});
-      
+    
     layout.left = this.layoutForView(col).left;
     layout.width = this.layoutForView(col).width;
 
@@ -104,7 +104,7 @@ SC.TableHeaderView = SC.TableRowView.extend({
     var view2, idx2;
     var columns = this.get('columns');
 
-    var layout = {left: put, width: this.thicknessForView(idx)}
+    var layout = {left: put, width: this.thicknessForView(idx)};
     view.adjust(layout);
 
   
@@ -290,7 +290,7 @@ SC.TableHeaderView = SC.TableRowView.extend({
       
       console.log(' end thumb dragging')
       
-      view = this._thumbDragging
+      view = this._thumbDragging;
       this._thumbDragging = NO;
       if (!view.get('isEnabled')) return NO ;
       this._lastX = this._lastY = this._offset = this._mouseDownX = this.mouseDownY = null;

@@ -1,5 +1,5 @@
 .sc-table-header {
-  background: static_url('resources/table_header_background_3.png') center left !important;
+  background: static_url('resources/table_header_background_3.png') center left;
   border-bottom: 1px solid #CACACA;
 }
 

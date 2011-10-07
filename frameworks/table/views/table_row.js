@@ -2,7 +2,7 @@ sc_require('views/table_cell');
 
 SC.TableRowView = SC.View.extend(SC.SimpleLayout, {
   isPoolable: YES,
-  layerIsCacheable: YES,
+  layerIsCacheable: NO,
   thicknessesKey: 'columns',
   thicknessKey: 'width',
 
@@ -44,7 +44,7 @@ SC.TableRowView = SC.View.extend(SC.SimpleLayout, {
       columns = this.get('columns'),
       // numCells = cellViews.get('length'),
       numCells = this._layoutViews ? this._layoutViews.get('length') : 0,
-      numCols = columns ? columns.get('length') : 0 ,
+      numCols = columns.get('length'),
       i, cell;
       
     if(!this.get('columns')) return;
@@ -108,7 +108,7 @@ SC.TableRowView = SC.View.extend(SC.SimpleLayout, {
     // this is faster than using bindings
     
     var cellView = this._sc_cell_views[SC.guidFor(column)];
-    var contentView = cellView ? cellView.get('contentView') : null;
+    var contentView = cellView.get('contentView');
     var content = this.get('content');
 
     if(column.updateCell && cellView.get('layer')) {
@@ -117,22 +117,20 @@ SC.TableRowView = SC.View.extend(SC.SimpleLayout, {
     }
     
 
-    if(cellView && contentView)
-    {
-      cellView.beginPropertyChanges();
-      contentView.beginPropertyChanges();
+    
+    cellView.beginPropertyChanges();
+    contentView.beginPropertyChanges();
 
-      // column is the same, position might not be
-      cellView.set('columnIndex', idx);
-      contentView.set('columnIndex', idx);
+    // column is the same, position might not be
+    cellView.set('columnIndex', idx);
+    contentView.set('columnIndex', idx);
+    
+    cellView.set('contentIndex', this.get('contentIndex'));
+    contentView.set('contentIndex', this.get('contentIndex'));
+    contentView.set('content', content);
 
-      cellView.set('contentIndex', this.get('contentIndex'));
-      contentView.set('contentIndex', this.get('contentIndex'));
-      contentView.set('content', content);
-
-      contentView.endPropertyChanges();
-      cellView.endPropertyChanges();
-    }
+    contentView.endPropertyChanges();
+    cellView.endPropertyChanges();
     return;
   },
   
